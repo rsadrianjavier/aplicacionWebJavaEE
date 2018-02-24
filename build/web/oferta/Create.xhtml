@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OfertaCreateDlg" widgetVar="OfertaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{es_Bundle.CreateOfertaTitle}">
+            <h:form id="OfertaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ofertaController.selected != null}">
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_title}" for="title" />
+                        <p:inputText id="title" value="#{ofertaController.selected.title}" title="#{es_Bundle.CreateOfertaTitle_title}" required="true" requiredMessage="#{es_Bundle.CreateOfertaRequiredMessage_title}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{ofertaController.selected.description}" title="#{es_Bundle.CreateOfertaTitle_description}" />
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_startPrice}" for="startPrice" />
+                        <p:inputText id="startPrice" value="#{ofertaController.selected.startPrice}" title="#{es_Bundle.CreateOfertaTitle_startPrice}" required="true" requiredMessage="#{es_Bundle.CreateOfertaRequiredMessage_startPrice}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_offerPrice}" for="offerPrice" />
+                        <p:inputText id="offerPrice" value="#{ofertaController.selected.offerPrice}" title="#{es_Bundle.CreateOfertaTitle_offerPrice}" required="true" requiredMessage="#{es_Bundle.CreateOfertaRequiredMessage_offerPrice}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_image}" for="image" />
+                        <p:inputText id="image" value="#{ofertaController.selected.image}" title="#{es_Bundle.CreateOfertaTitle_image}" />
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_startDate}" for="startDate" />
+                        <p:calendar id="startDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{ofertaController.selected.startDate}" title="#{es_Bundle.EditOfertaTitle_startDate}" required="true" requiredMessage="#{es_Bundle.EditOfertaRequiredMessage_startDate}" showOn="button"/>
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_endDate}" for="endDate" />
+                        <p:calendar id="endDate" pattern="MM/dd/yyyy HH:mm:ss" value="#{ofertaController.selected.endDate}" title="#{es_Bundle.EditOfertaTitle_endDate}" required="true" requiredMessage="#{es_Bundle.EditOfertaRequiredMessage_endDate}" showOn="button"/>
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_active}" for="active" />
+                        <p:selectBooleanCheckbox id="active" value="#{ofertaController.selected.active}" required="true" requiredMessage="#{es_Bundle.EditOfertaRequiredMessage_active}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateOfertaLabel_applicationUsersId}" for="applicationUsersId" />
+                        <p:selectOneMenu id="applicationUsersId" value="#{ofertaController.selected.applicationUsersId}" required="true" requiredMessage="#{es_Bundle.EditOfertaRequiredMessage_applicationUsersId}">
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="applicationUsersIdItem"
+                                           itemValue="#{applicationUsersIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ofertaController.create}" value="#{es_Bundle.Save}" update="display,:OfertaListForm:datalist,:growl" oncomplete="handleSubmit(args,'OfertaCreateDialog');"/>
+                    <p:commandButton value="#{es_Bundle.Cancel}" onclick="OfertaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

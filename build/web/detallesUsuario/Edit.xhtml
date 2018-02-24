@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetallesUsuarioEditDlg" widgetVar="DetallesUsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{es_Bundle.EditDetallesUsuarioTitle}">
+            <h:form id="DetallesUsuarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detallesUsuarioController.selected != null}">
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{detallesUsuarioController.selected.id}" title="#{es_Bundle.EditDetallesUsuarioTitle_id}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_id}"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{detallesUsuarioController.selected.name}" title="#{es_Bundle.EditDetallesUsuarioTitle_name}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_name}"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_dniCif}" for="dniCif" />
+                        <p:inputText id="dniCif" value="#{detallesUsuarioController.selected.dniCif}" title="#{es_Bundle.EditDetallesUsuarioTitle_dniCif}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_dniCif}"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{detallesUsuarioController.selected.address}" title="#{es_Bundle.EditDetallesUsuarioTitle_address}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_address}"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{detallesUsuarioController.selected.city}" title="#{es_Bundle.EditDetallesUsuarioTitle_city}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_city}"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_province}" for="province" />
+                        <p:inputText id="province" value="#{detallesUsuarioController.selected.province}" title="#{es_Bundle.EditDetallesUsuarioTitle_province}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_province}"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{detallesUsuarioController.selected.country}" title="#{es_Bundle.EditDetallesUsuarioTitle_country}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_country}"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_latitude}" for="latitude" />
+                        <p:inputText id="latitude" value="#{detallesUsuarioController.selected.latitude}" title="#{es_Bundle.EditDetallesUsuarioTitle_latitude}" />
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_longitude}" for="longitude" />
+                        <p:inputText id="longitude" value="#{detallesUsuarioController.selected.longitude}" title="#{es_Bundle.EditDetallesUsuarioTitle_longitude}" />
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_dateOfRegistration}" for="dateOfRegistration" />
+                        <p:calendar id="dateOfRegistration" pattern="MM/dd/yyyy" value="#{detallesUsuarioController.selected.dateOfRegistration}" title="#{es_Bundle.EditDetallesUsuarioTitle_dateOfRegistration}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_dateOfRegistration}" showOn="button"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_leavingDate}" for="leavingDate" />
+                        <p:calendar id="leavingDate" pattern="MM/dd/yyyy" value="#{detallesUsuarioController.selected.leavingDate}" title="#{es_Bundle.EditDetallesUsuarioTitle_leavingDate}"  showOn="button"/>
+                        <p:outputLabel value="#{es_Bundle.EditDetallesUsuarioLabel_applicationUsersId}" for="applicationUsersId" />
+                        <p:selectOneMenu id="applicationUsersId" value="#{detallesUsuarioController.selected.applicationUsersId}" required="true" requiredMessage="#{es_Bundle.EditDetallesUsuarioRequiredMessage_applicationUsersId}">
+                            <f:selectItem itemLabel="#{es_Bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"
+                                           var="applicationUsersIdItem"
+                                           itemValue="#{applicationUsersIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detallesUsuarioController.update}" value="#{es_Bundle.Save}" update="display,:DetallesUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DetallesUsuarioEditDialog');"/>
+                    <p:commandButton value="#{es_Bundle.Cancel}" onclick="DetallesUsuarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

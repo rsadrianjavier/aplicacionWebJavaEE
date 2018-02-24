@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{es_Bundle.EditUsuarioTitle}">
+            <h:form id="UsuarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
+                        <p:outputLabel value="#{es_Bundle.EditUsuarioLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{usuarioController.selected.id}" title="#{es_Bundle.EditUsuarioTitle_id}" required="true" requiredMessage="#{es_Bundle.EditUsuarioRequiredMessage_id}"/>
+                        <p:outputLabel value="#{es_Bundle.EditUsuarioLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{usuarioController.selected.username}" title="#{es_Bundle.EditUsuarioTitle_username}" required="true" requiredMessage="#{es_Bundle.EditUsuarioRequiredMessage_username}"/>
+                        <p:outputLabel value="#{es_Bundle.EditUsuarioLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{usuarioController.selected.password}" title="#{es_Bundle.EditUsuarioTitle_password}" required="true" requiredMessage="#{es_Bundle.EditUsuarioRequiredMessage_password}"/>
+                        <p:outputLabel value="#{es_Bundle.EditUsuarioLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{usuarioController.selected.email}" title="#{es_Bundle.EditUsuarioTitle_email}" required="true" requiredMessage="#{es_Bundle.EditUsuarioRequiredMessage_email}"/>
+                        <p:outputLabel value="#{es_Bundle.EditUsuarioLabel_active}" for="active" />
+                        <p:selectBooleanCheckbox id="active" value="#{usuarioController.selected.active}" required="true" requiredMessage="#{es_Bundle.EditUsuarioRequiredMessage_active}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioController.update}" value="#{es_Bundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsuarioEditDialog');"/>
+                    <p:commandButton value="#{es_Bundle.Cancel}" onclick="UsuarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

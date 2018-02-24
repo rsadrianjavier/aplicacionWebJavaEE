@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/estructura.xhtml">
+        
+        <ui:define name="title">
+            
+            <h:outputText value="CONDICIONES DE USO"></h:outputText>
+            
+        </ui:define>
+        
+        <ui:define name="body">
+            <h:form>
+                <p:panel header="CONDICIONES DE USO">
+                    <h:outputText value="Tenemos una serie de condiciones generales que se aplican a todos los cupones publicados.&lt;br/&gt;&lt;br/&gt;
+                                  Salvo excepciones que se os comunicarán pertinentemente, las condiciones generales son las siguientes:&lt;br/&gt;&lt;br/&gt;
+                                  - El cupón solo se puede utilizar una vez excepto con los cupones especificados.&lt;br/&gt;
+                                  - En caso de no cancelar la reserva en el periodo mínimo de antelación indicado en la publicación, perderás el derecho de utilizar tu cupón.&lt;br/&gt;
+                                  - Las ofertas no son acumulables con otras en curso.&lt;br/&gt;
+                                  - Todas las reservas se realizarán según disponibilidad de la empresa que ofrece el cupón.&lt;br/&gt;
+                                  - Las ofertas no se pueden cambiar por dinero en efectivo en el establecimiento o empresa.&lt;br/&gt;
+                                  - IVA incluido en todas las ofertas salvo que se especifique lo contrario y salvo en los cupones publicados en las Islas Canarias." escape="false"></h:outputText>
+                </p:panel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

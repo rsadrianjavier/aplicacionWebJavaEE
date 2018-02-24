@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/estructura.xhtml">
+        
+        <ui:define name="title">
+            <h:outputText value="#{es_Bundle.Login}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="especificoForm">
+                <p:panel header="#{es_Bundle.Login}">
+                    <p:panelGrid columns="2" rendered="#{loginController.user != null}">
+                        <p:outputLabel value="Usuario actual: " for="loggedUsername" />
+                        <h:outputText id="loggedUsername" value="#{loginController.username}"/>
+                        <p:outputLabel value="Rol Usuario: " for="loggedRolUser" />
+                        <h:outputText id="loggedRolUser" value="#{loginController.rol}"/>
+                        <h:outputText value="*Aviso:"/>
+                        <h:outputText value="Su cuenta de usuario aún no está validada por el administrador"/>
+                    </p:panelGrid>
+                    <p:panelGrid columns="3" rendered="#{loginController.user == null}">
+                        <p:outputLabel value="#{es_Bundle.CreateUsuarioLabel_username}" 
+                                       for="username" />
+                        <p:inputText id="username" value="#{loginController.username}" 
+                                     title="#{es_Bundle.CreateUsuarioTitle_username}" 
+                                     required="true" requiredMessage="#{es_Bundle.CreateUsuarioRequiredMessage_username}"/>
+                        <h:message for="username" errorStyle="color:red" infoStyle="color: green"/>
+
+                        <p:outputLabel value="#{es_Bundle.CreateUsuarioLabel_password}" 
+                                       for="password" />
+                        <p:password id="password" value="#{loginController.password}" 
+                                    title="#{es_Bundle.CreateUsuarioTitle_password}" 
+                                    required="true" requiredMessage="#{es_Bundle.CreateUsuarioRequiredMessage_password}"/>
+                        <h:message for="password" errorStyle="color:red" infoStyle="color: green"/>
+                    </p:panelGrid>
+                    
+                    <p:commandButton id="loginButton" value="#{es_Bundle.Login}" 
+                                     action="#{loginController.doLogin}" 
+                                     rendered="#{loginController.user == null}"
+                                     update=":growl,especificoForm"/>
+                </p:panel>
+                
+                
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

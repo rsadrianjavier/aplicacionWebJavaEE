@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ApplicationRolViewDlg" widgetVar="ApplicationRolViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{es_Bundle.ViewApplicationRolTitle}">
+            <h:form id="ApplicationRolViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{applicationRolController.selected != null}">
+                        <h:outputText value="#{es_Bundle.ViewApplicationRolLabel_id}"/>
+                        <h:outputText value="#{applicationRolController.selected.id}" title="#{es_Bundle.ViewApplicationRolTitle_id}"/>
+                        <h:outputText value="#{es_Bundle.ViewApplicationRolLabel_rolename}"/>
+                        <h:outputText value="#{applicationRolController.selected.rolename}" title="#{es_Bundle.ViewApplicationRolTitle_rolename}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{es_Bundle.Close}" onclick="ApplicationRolViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

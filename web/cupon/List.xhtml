@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{es_Bundle.ListCuponTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="CuponListForm">
+                <p:panel header="#{es_Bundle.ListCuponTitle}">
+                    <p:dataTable id="datalist" value="#{cuponController.items}" var="item"
+                                 selectionMode="single" selection="#{cuponController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListCuponTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListCuponTitle_generatedCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.generatedCode}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListCuponTitle_purchaseDatetime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.purchaseDatetime}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListCuponTitle_used}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.used}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListCuponTitle_offersId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.offersId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListCuponTitle_applicationUsersId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.applicationUsersId}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{es_Bundle.Create}" actionListener="#{cuponController.prepareCreate}" update=":CuponCreateForm" oncomplete="PF('CuponCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{es_Bundle.View}" update=":CuponViewForm" oncomplete="PF('CuponViewDialog').show()" disabled="#{empty cuponController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{es_Bundle.Edit}" update=":CuponEditForm" oncomplete="PF('CuponEditDialog').show()" disabled="#{empty cuponController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{es_Bundle.Delete}" actionListener="#{cuponController.destroy}" update=":growl,datalist" disabled="#{empty cuponController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

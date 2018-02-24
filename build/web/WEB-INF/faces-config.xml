@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>/es/ajrs/jee/ef/es_Bundle</base-name>
+            <var>es_Bundle</var>
+        </resource-bundle>
+    </application>
+
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/cerrada.xhtml</to-view-id>           
+        </navigation-case>      
+        <navigation-case>
+            
+            <from-outcome>nada</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>           
+        </navigation-case>      
+        <navigation-case>
+            
+            <from-outcome>homeCliente</from-outcome>
+            <to-view-id>/cliente/index.xhtml</to-view-id>           
+        </navigation-case>      
+        <navigation-case>
+            
+            <from-outcome>homeStandar</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>           
+        </navigation-case>      
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/administrador/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>nego</from-outcome>
+            <to-view-id>/negocio/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>clien</from-outcome>
+            <to-view-id>/cliente/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+        </navigation-case>      
+    </navigation-rule>
+    
+</faces-config>

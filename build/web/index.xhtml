@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:composition template="/estructura.xhtml">
+        <ui:define name="title">            
+            <h:outputText value="#{es_Bundle.Inicio}"></h:outputText>            
+        </ui:define>
+
+        <ui:define name="body">          
+            <h:graphicImage value="images/agrupados.jpg" height="200px" width="100%"/>
+            <h:form id="especificoForm">
+                <p:panel header="OFERTAS DISPONIBLES">
+                    <p:dataTable id="datalist" value="#{ofertaController.itemsActivos}" var="item"
+                                 selectionMode="single" selection="#{carritoController.seleccionada}"
+                                 rowKey="#{item.id}"
+                                 rows="10"                                 
+                                 >
+                        <p:ajax event="rowSelect"   update="anadirCarritoButton"/>
+                        <p:ajax event="rowUnselect" update="anadirCarritoButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Buscar por:"/>
+                            </f:facet>
+                        </p:column>
+
+                        <p:column filterBy="#{item.id}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListOfertaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.title}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListOfertaTitle_title}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.title}"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.startPrice}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListOfertaTitle_startPrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.startPrice}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.offerPrice}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListOfertaTitle_offerPrice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.offerPrice}"/>
+                        </p:column>
+                        
+                        <p:column filterBy="#{item.startDate}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListOfertaTitle_startDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.startDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column filterBy="#{item.endDate}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{es_Bundle.ListOfertaTitle_endDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endDate}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        
+                        <f:facet name="footer">                           
+                            <p:commandButton disabled="#{empty carritoController.seleccionada}"
+                                             update=":especificoForm"  id="anadirCarritoButton"
+                                             icon="ui-icon-plus" value="Añadir al carrito"
+                                             actionListener="#{carritoController.anadirCarrito()}"/>                            
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>            
+        </ui:define>
+    </ui:composition>
+
+</html>
+

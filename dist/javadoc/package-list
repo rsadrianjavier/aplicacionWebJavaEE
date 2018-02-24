@@ -1,0 +1,8 @@
+es.ajrs.jee.ef.controllers
+es.ajrs.jee.ef.controllers.beans
+es.ajrs.jee.ef.controllers.util
+es.ajrs.jee.ef.filters
+es.ajrs.jee.ef.model.entities
+es.ajrs.jee.ef.model.facades
+es.ajrs.jee.ef.services
+es.ajrs.jee.ef.services.model

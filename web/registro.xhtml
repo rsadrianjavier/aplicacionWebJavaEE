@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/estructura.xhtml">
+        <ui:define name="title">
+            <h:outputText value="REGISTRO"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="UsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{registroController.usuario != null}">
+                        <p:outputLabel value="#{es_Bundle.CreateUsuarioLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{registroController.usuario.username}" title="#{es_Bundle.CreateUsuarioTitle_username}" required="true" requiredMessage="#{es_Bundle.CreateUsuarioRequiredMessage_username}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateUsuarioLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{registroController.usuario.password}" title="#{es_Bundle.CreateUsuarioTitle_password}" required="true" requiredMessage="#{es_Bundle.CreateUsuarioRequiredMessage_password}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateUsuarioLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{registroController.usuario.email}" title="#{es_Bundle.CreateUsuarioTitle_email}" required="true" requiredMessage="#{es_Bundle.CreateUsuarioRequiredMessage_email}"/>
+                       
+                        <p:outputLabel value="#{es_Bundle.CreateDetallesUsuarioLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{registroController.detallesUsuario.name}" title="#{es_Bundle.CreateDetallesUsuarioTitle_name}" required="true" requiredMessage="#{es_Bundle.CreateDetallesUsuarioRequiredMessage_name}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateDetallesUsuarioLabel_dniCif}" for="dniCif" />
+                        <p:inputText id="dniCif" value="#{registroController.detallesUsuario.dniCif}" title="#{es_Bundle.CreateDetallesUsuarioTitle_dniCif}" required="true" requiredMessage="#{es_Bundle.CreateDetallesUsuarioRequiredMessage_dniCif}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateDetallesUsuarioLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{registroController.detallesUsuario.address}" title="#{es_Bundle.CreateDetallesUsuarioTitle_address}" required="true" requiredMessage="#{es_Bundle.CreateDetallesUsuarioRequiredMessage_address}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateDetallesUsuarioLabel_city}" for="city" />
+                        <p:inputText id="city" value="#{registroController.detallesUsuario.city}" title="#{es_Bundle.CreateDetallesUsuarioTitle_city}" required="true" requiredMessage="#{es_Bundle.CreateDetallesUsuarioRequiredMessage_city}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateDetallesUsuarioLabel_province}" for="province" />
+                        <p:inputText id="province" value="#{registroController.detallesUsuario.province}" title="#{es_Bundle.CreateDetallesUsuarioTitle_province}" required="true" requiredMessage="#{es_Bundle.CreateDetallesUsuarioRequiredMessage_province}"/>
+                        <p:outputLabel value="#{es_Bundle.CreateDetallesUsuarioLabel_country}" for="country" />
+                        <p:inputText id="country" value="#{registroController.detallesUsuario.country}" title="#{es_Bundle.CreateDetallesUsuarioTitle_country}" required="true" requiredMessage="#{es_Bundle.CreateDetallesUsuarioRequiredMessage_country}"/>
+                        <p:outputLabel/>
+                        <p:commandButton action="#{registroController.save}"
+                                         value="Completar registro" update=":growl, :UsuarioCreateForm"/>
+                    </p:panelGrid>
+              </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

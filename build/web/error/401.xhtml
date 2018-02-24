@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/error/estructura.xhtml">
+        
+        <ui:define name="title">
+            
+            <h:outputText value="401"></h:outputText>
+            
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="especificoForm">
+                <p:panel header="Error 401">
+                    
+                    <h:outputText value="Acceso denegado. Usuario sin permiso para acceder a este área."></h:outputText>
+
+                </p:panel>
+            </h:form>
+            
+
+        </ui:define>
+    </ui:composition>
+</html>
